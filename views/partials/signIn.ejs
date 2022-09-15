@@ -1,0 +1,60 @@
+
+<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-c-tabs">
+
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign In</a>
+                </li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+
+                <form action="/login" method="POST">
+
+                <br>
+                        <input type="text" class="input" name="username" id="user_pass" placeholder="Enter Username">
+                        <br><br><br>
+                        <input type="password" class="input" name="pwd" id="user_pass" placeholder="Enter password">
+
+                        <br><br>
+
+                        <button class="btn btn-secondary"> Login </button>
+
+                        </form>
+
+                        <br><br><br>       
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="profile">
+                        <br>
+                      <form action="/register" method="POST">
+                        <input type="text" class="input" name="userName" id="user_name" placeholder="Enter Username">
+                        <br><br><br>
+                        <input type="password" class="input" name="password" id="user_password" placeholder="Enter password">
+
+                        <br><br>
+
+                        <button id="registerButton" class="btn btn-secondary"> Sign Up! </button>
+                          </form>
+        <% if(typeof error != "undefined") { %>
+              <%= error %>
+
+              
+              
+              <% } %>
+                          
+                        <br><br><br>
+                        <div id="registerMessage">
+                        
+                        </div>
+
+                        <br><br><br>
+                </div>
+              </div>
+</div>
+           
+

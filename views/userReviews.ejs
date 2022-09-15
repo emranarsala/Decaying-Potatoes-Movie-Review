@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <title>User Reviews</title>
+</head>
+
+<%-include("partials/navigation.ejs")%>
+ 
+<div id = "ur">
+
+<br>
+<h2> Reviews </h2>
+<hr>
+  <br>
+<% for (let i=0; i < review.length; i++) {%>
+  
+
+
+<a href = "/review/edit?reviewId= <%=review[i].reviewId%>" class="link" > Update </a> 
+<a href = "/review/delete?reviewId= <%=review[i].reviewId%>" class="link2"> Delete </a>
+<br><br>
+
+     <div id="poster">
+     <img id="posterimg" src  = "<%= review[i].Poster %>"> 
+  </div>
+
+  <b> <%=  review[i].Title %></b>
+  
+    <div id="reviewPageReview">
+    Review: <%=  review[i].Review %>
+    </div>
+    <br>
+     Rating: <%= review[i].Rating %> / 5
+     <br>
+     Date: <%= review[i].Date %>
+     <br>
+     <br>
+    
+<% } %>
+
+</div>
+
+
+
+<%-include("partials/reviewModal.ejs")%>
+<%-include("partials/signIn.ejs")%>
+
+<script src="/js/script.js">
+</script>
+
+
+</body>
+</html>

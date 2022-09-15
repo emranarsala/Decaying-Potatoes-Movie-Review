@@ -1,0 +1,975 @@
+<!--<img src="/img/decayingPotatoes.png" width=500px height=80px>-->
+<h1> <b> Decaying Potato - Movie Reviews </b></h1>
+
+<img src="/img/decayingPotatoes.png" width=500px height=80px>
+
+<table class="table">
+
+   <% for (var i = 0; i < data.Search.length; i++) { %>
+    <tr href="#">
+    <td><%= data.Search[i].Title %></td>
+    <td><img width=100 height =50 src = "<%= data.Search[i].Poster %>"></td>
+    </tr>    
+   <% } %>
+</table>
+
+<% for (i = 0; i < data.Search.length; i++)  { %>
+   
+<img width =20 height =20 src = "<%= data.Search[i].Poster %>"
+<br>
+<%= data.Search[i].Year %>
+<a href="#" id="<%= data.Search[i].Title %>"> 
+<%= data.Search[i].Title %>
+</a>
+<br><br>
+<% } %>
+
+
+
+
+
+
+----------------------
+
+<div id="topMovies">
+
+<br><br>
+<table class="table">
+
+   <% for (var i = 0; i < data.Search.length; i++) { %>
+    <tr 
+    
+    
+    
+  <a class="quoteClick"href="#" id="<%= 1 %>"> 
+    
+    
+    
+    <td><%= data.Search[i].Title %>
+    <%= (data.Search[i].Year) %>
+    </td>
+
+      </a>
+
+    <td><img width=105 height =120 src = "<%= data.Search[i].Poster %>"></td>
+    </tr>    
+   <% } %>
+</table>
+
+
+</div>
+
+
+
+http://www.omdbapi.com/?i=tt3896198&apikey=2f38f86b&y=?
+
+{"Title":"Guardians of the Galaxy Vol. 2","Year":"2017","Rated":"PG-13","Released":"05 May 2017","Runtime":"136 min","Genre":"Action, Adventure, Comedy","Director":"James Gunn","Writer":"James Gunn, Dan Abnett, Andy Lanning","Actors":"Chris Pratt, Zoe Saldana, Dave Bautista","Plot":"The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego.","Language":"English","Country":"United States","Awards":"Nominated for 1 Oscar. 15 wins & 58 nominations total","Poster":"https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.6/10"},{"Source":"Rotten Tomatoes","Value":"85%"},{"Source":"Metacritic","Value":"67/100"}],"Metascore":"67","imdbRating":"7.6","imdbVotes":"612,320","imdbID":"tt3896198","Type":"movie","DVD":"22 Aug 2017","BoxOffice":"$389,813,101","Production":"N/A","Website":"N/A","Response":"True"}
+
+
+var modal = document.getElementById("myModal");
+window.onload=bg;
+
+var button = document.getElementById("movie");
+
+var span = document.getElementsByClassName("btn-close")[0];
+
+var span2 = document.getElementsByClassName("btn btn-secondary")[0];
+
+
+button.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+span2.onclick = function() {
+  modal.style.display = "none";
+}
+
+
+
+async function bg(){
+  alert("hello");
+
+   let bgUrl = `https://pixabay.com/api/?key=23643579-46b22be7a91c73f5afdaeee06&q=movie&orientation=horizontal`;
+   
+   let bgData = await fetchData(bgUrl);
+   let shuf = (bgData.hits);
+
+   var bg= document.getElementById("homeBg");
+
+  // bg.style.backgroundImage = 'url('+shuf[0].webformatURL+')';
+  console.log(shuf[0].webformatURL);
+
+  document.getElementById("homeBg").style.backgroundImage = 'url('+shuf[0].webformatURL+)';
+}
+
+
+
+async function fetchData(url) {
+  let response = await fetch(url);
+  let data = await response.json();
+
+  background=data;
+  return data;
+}
+
+
+  <a class ="navBar" href="/genre">Browse By Genre</a>
+    <a href="login2" class="navBar" data-toggle="modal" data-target="#modalLRForm">Sign in or Register</a>
+
+
+
+    <body onload="bg()">
+
+
+<header>
+<br>
+
+<div id ="nav">
+  <a class ="navBar" href="/home">Home</a>
+  <a class ="navBar" href="topMovies">Top Rated Movies</a>
+  <a class ="navBar" href="/genre">Browse By Genre</a>
+    <a href="/login2" class="navBar" ><% if(typeof user!= "undefined" ){ %>
+    Hello  <%= user %>
+ <% } else{ %>  
+   Sign in or Register
+<% } %></a>
+
+
+  <%if (typeof user!= "undefined" ) { %>
+  <form method="GET" action = "/logout">
+  <button type="button" class="logout">
+  <span class="glyphicon glyphicon-log-out"></span>
+    Logout
+</span>
+  </button>
+</form>
+<% } %>  
+
+<br><br>
+
+<form action ="/search" method ="GET">
+  <input id ="searchBox" type="text" placeholder ="Search..." name="title"></input>
+  <button id ="search">
+  <img src ="/img/search2.png" width=10px height=10px>
+  </button>
+</form>
+
+
+
+</div>
+
+<br>
+</header>
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+<div id ="nav">
+  <a class ="navBar" href="/home">Home</a>
+  <a class ="navBar" href="topMovies">Top Rated Movies    </a>
+  <a class ="navBar" href="/genre">Browse By Genre</a>
+  <a href="" class="navBar" data-toggle="modal" data-target="#modalLRForm" id="SignIn">Sign in or Register</a>
+  <button type="button" class="logout" id="logOut" style="visibility: hidden;">
+  <span class="glyphicon glyphicon-log-out " ></span>  </span>
+  </button>
+
+<br><br>
+    <form action="/search">
+  <input type="text" placeholder ="Search..." name="title" id="searchBox"></input>
+  <button id ="search">
+  <img src ="/img/search2.png" width=23px height=23px>
+  </button>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/js/script.js">
+</script>
+
+  <title>Document</title>
+</head>
+
+
+
+  
+<header>
+<br>
+
+<div id ="nav">
+  <a class ="navBar" href="/home">Home</a>
+  <a class ="navBar" href="topMovies">Top Rated Movies</a>
+  <a class ="navBar" href="/genre">Browse By Genre</a>
+  <a href="/login2" class="navBar" >Sign in or Register</a>
+  <button type="button" class="logout">
+  <span class="glyphicon glyphicon-log-out"></span> Log out </span>
+  </button>
+
+<br><br>
+
+<form action ="/search" method ="GET">
+  <input id ="searchBox" type="text" placeholder ="Search..." name="title"></input>
+  <button id ="search">
+  <img src ="/img/search2.png" width=10px height=10px>
+  </button>
+</form>
+
+
+
+</div>
+
+<br>
+</header>
+
+</body>
+</html>
+
+
+ <div id="topMovies">
+
+<% for (let i=0; i < data.length; i++) {%>
+  <a class="movieClick" href="#" id="<%= data[i].movieID %>"> 
+   <%= data[i].Title %>
+   <%= data[i].Year %>
+   <img width=50 height =100 src = "<%= data[i].Poster %>"> 
+  </a>
+  <br><br>
+<%}%>
+
+</div>
+
+
+<div id="movieTop">
+<table>
+
+   <% for (var i = 0; i < data.Search.length; i++) { %>
+    <tr>
+    
+    <td><%= data.Search[i].Title %></td>
+    <td><%= data.Search[i].Year %></td>
+    <td></td>
+    <td><img width=100 height =50 src = "<%= data.Search[i].Poster %>"></td>
+    </tr>    
+   <% } %>
+</table>
+
+</div>
+
+
+
+<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-c-tabs">
+
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a>
+                </li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+
+
+        <div id="moviePhoto"></div>
+
+        <div id="movieInfo"></div>
+
+                
+
+                        
+                </div>
+
+                
+                <div role="tabpanel" class="tab-pane" id="profile">
+                        <br>
+
+                        <form method="POST" action="/register">
+                        
+                        <div id="RadioRating"> 
+        <input type="radio" id="1">
+        <label for="1"></label>
+        <input type="radio" id="2" >
+        <label for="2"></label>
+        <input type="radio" id="3">
+        <label for="3"></label>
+        <input type="radio" id="4" >
+        <label for="2"></label>
+        <input type="radio" id="5">
+        <label for="3"></label>
+
+        <div id="writeReview">
+        <input id="reviewBox" type="text" width="200" height="200" placeholder="Write a review..."> </input>
+        <button id="submitReviewButton">Submit </button>
+        </div>
+        <div id="movieReviews"></div>
+                          </form>
+
+                        <br><br><br>
+                
+                </div>
+              </div>
+ 
+</div>
+
+
+<div id="movieModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" id="content">
+      <div class="modal-header" id="name" >
+        <h5 class="modal-title" id="name2" style="font-size: x-large"></h5>
+      </div>
+      <div class="modal-body" id="bodyInfo">
+        
+        <div id="moviePhoto"></div>
+
+        <div id="movieInfo"></div>
+
+        <h3> Rate </h3>
+
+        <div id="RadioRating"> 
+        <input type="radio" id="1">
+        <label for="1"></label>
+        <input type="radio" id="2" >
+        <label for="2"></label>
+        <input type="radio" id="3">
+        <label for="3"></label>
+        <input type="radio" id="4" >
+        <label for="2"></label>
+        <input type="radio" id="5">
+        <label for="3"></label>
+
+        <div id="writeReview">
+        <input id="reviewBox" type="text" width="200" height="200" placeholder="Write a review..."> </input>
+        <button id="submitReviewButton">Submit </button>
+        </div>
+        <div id="movieReviews"></div>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+LOGIN2.ejs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Login</title>
+</head>
+<body>
+
+<div id="loginForm">
+<br><br><br><br><br><br>
+  <h1> Login</h1>
+
+  <form method="POST" action="/login">
+  
+  <input type="text" name="username" placeholder="Username">
+  <br><br><br>
+
+  <input type="password" name="pwd" placeholder="Password">
+ <br><br><br>
+  <button style="width: 90px; height: 35px;">Login</button>
+  </form>
+
+<br><br>
+    <form method="GET" action="/register">
+  <button >Register</button>
+  </form>
+
+  <% if(typeof error !="undefined"){%>
+  <%= error %>
+  <% } %>
+
+  </div>
+  
+</body>
+</html>
+
+
+REGISTER.ejs
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Login</title>
+</head>
+<body>
+
+<div id="registerForm">
+<br><br><br><br><br><br>
+  <h1> Register</h1>
+    <br><br><br>
+
+  <form method="POST" action="/register">
+  <input type="text" name="userName" placeholder="Username">
+  <br><br><br>
+  <input type="password" name="password" placeholder="Password">
+  <br><br><br>
+  <button style="width: 90px; height: 35px;">Register</button>
+  </form>
+
+  <% if(typeof error !="undefined"){%>
+  <%= error %>
+  <% } %>
+
+  </div>
+  
+</body>
+</html>
+
+
+
+ <div id="topMovies">
+
+<% for (let i=0; i < data.Search.length; i++) {%>
+  <a class="movieClick" href="#" id="<%= data.Search[i].imdbID %>"> 
+   <%= data.Search[i].Title %>
+   <%= data.Search[i].Year %>
+   <img width=50 height =100 src = "<%= data.Search[i].Poster %>"> 
+  </a>
+  <br><br>
+<%}%>
+
+</div>
+
+
+ <div id="topMovies">
+
+<% for (let i=0; i < data.length; i++) {%>
+  <a class="movieClick" href="#" id="<%= data[i].imdbID %>"> 
+   <%= data[i].Title %>
+   <%= data[i].Year %>
+   <img width=50 height =100 src = "<%= data[i].Poster %>"> 
+  </a>
+  <br><br>
+<%}%>
+
+</div>
+
+
+<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-c-tabs">
+
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Sign In</a>
+                </li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Register</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+
+                <form action="/login" method="POST">
+
+                <br>
+                        <input type="text" class="input" name="username" id="user_pass" placeholder="Enter Username">
+                        <br><br><br>
+                        <input type="password" class="input" name="pwd" id="user_pass" placeholder="Enter password">
+
+                        <br><br>
+
+                        <button> Login </button>
+
+                        </form>
+
+                        <br><br><br>       
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                        <br>
+
+                        <form method="POST" action="/register">
+                        <input type="text" class="input" name="userName" id="user_pass" placeholder="Enter Username">
+                        <br><br><br>
+                        <input type="password" class="input" name="password" id="user_pass" placeholder="Enter password">
+
+                        <br><br>
+
+                        <button> Sign Up! </button>
+
+                          </form>
+
+                        <br><br><br>
+                </div>
+              </div>
+</div>
+      
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <title>Home</title>
+</head>
+
+<%-include("partials/navigation.ejs")%>
+<br>
+
+<div id="homePage">
+
+<div id ="top">
+
+<div>
+ <a class="movieClick" href="#" id="<%= data.Search[1].imdbID %>">
+         <img class="topMovie" src="<%= data.Search[1].Poster %>">
+ </a>
+</div>
+
+<div>
+ <a class="movieClick" href="#" id="<%= data.Search[0].imdbID %>">
+         <img class="topMovie" src="<%= data.Search[0].Poster %>">
+ </a>
+</div>
+
+
+<div>
+ <a class="movieClick" href="#" id="<%= data.Search[3].imdbID %>">
+         <img class="topMovie" src="<%= data.Search[3].Poster %>">
+ </a>
+</div>
+</div>
+
+
+<br><br><br>
+
+
+<div id="movieTop">
+
+   <% for (var i = 0; i < data.Search.length; i++) { %>
+   <br>
+
+   <div class="movies">
+
+    <img width=100 height =100 src = "<%= data.Search[i].Poster %>">
+
+    </div>
+
+    <div>
+
+    <%= data.Search[i].Title %>
+    <%= data.Search[i].Year %>
+    <br>
+    </div>
+
+    <br>
+    
+   
+
+   <% } %>
+
+
+</div>
+
+
+
+
+<%-include("partials/reviewModal.ejs")%>
+<%-include("partials/signIn.ejs")%>
+
+
+
+<script src="/js/script.js">
+</script>
+
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <title>Top Movies</title>
+</head>
+<body>
+
+<%-include("partials/navigation.ejs")%>
+
+
+ <div id="topMovies">
+
+<% for (let i=0; i < data.Search.length; i++) {%>
+  <div class="movieClick" href="#" id="<%= data.Search[i].imdbID %>"> 
+  <div id="poster">
+     <img width=50 height =100 src = "<%= data.Search[i].Poster %>"> 
+  </div>
+
+  <div id="info">
+     <%= data.Search[i].Title %>
+    <%= (data.Search[i].Year) %>
+  </div>
+
+  </div>
+
+  <br><br>
+<%}%>
+
+</div>
+
+
+<%-include("partials/reviewModal.ejs")%>
+
+<%-include("partials/signIn.ejs")%>
+
+  <script src="/js/script.js">
+</script>
+
+</body>
+</html>
+
+
+
+window.onload = bgImageGeneration;
+
+var x = 0;
+bgImageGeneration();
+
+$(".movieClick").on("click", displayMovieInfo2);
+$("#submitReviewButton").on("click", displayReviews);
+$("#registerButton").on("click", register);
+
+var movieId;
+
+var userName=document.getElementsByName("hiddenUser")[0].value;
+
+async function register() {
+  $("#registerMessage").html(" ");
+
+  var username = document.getElementById("user_name").value;
+  var password = document.getElementById("user_password").value;
+
+  if (username.length <= 0) {
+    $("#registerMessage").append("Enter a username!");
+    $("#registerMessage").append(`<br>`);
+    $("#registerMessage").append(`<br>`);
+  }
+  else if (password.length <= 0) {
+    $("#registerMessage").append("Enter a password!");
+    $("#registerMessage").append(`<br>`);
+    $("#registerMessage").append(`<br>`);
+  }
+
+  else if (username.length >= 20) {
+    $("#registerMessage").append("Username too long!");
+    $("#registerMessage").append(`<br>`);
+    $("#registerMessage").append(`<br>`);
+  }
+  else if (password.length >= 20) {
+    $("#registerMessage").append("Password too long!");
+    $("#registerMessage").append(`<br>`);
+    $("#registerMessage").append(`<br>`);
+  }
+  else {
+    var info = username + "," + password;
+    let url = `/api/register?info=${info}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    // alert(data);
+    // $("#registerMessage").append(data);
+    if (data == 0) {
+      // $("#registerMessage").append("You are registered");
+      // let button = document.getElementById("SignIn");
+      // let button2 = document.getElementById("logOut");
+      // button.style.display = "none";
+      // button2.style.visibility = "visible";
+    }
+    else {
+      $("#registerMessage").append("Username Taken!");
+    }
+  }
+
+}
+
+
+async function displayMovieInfo2() {
+
+  movieId = this.id;
+
+
+  $("#movieInfo").empty();
+  $("#moviePhoto").empty();
+  $("#reviews").empty();
+   $("#errorMessage").html(" ");
+
+  // $('#reviewToggle').removeClass('active');
+  var myModal = new bootstrap.Modal(document.getElementById('movieModal'));
+  
+  myModal.show();
+
+  let url = `/api/movieInfo?movieId=${movieId}`;
+  let response = await fetch(url);
+  let data = await response.json();
+  //  alert(data);
+  // $(".modal-title").html(data.Poster);
+  $(".modal-title").html(` <b>${data.Title} (${data.Year}) </b><br>`);
+  $("#moviePhoto").append(`<img src="${data.Poster}" width="200"> <br>`);
+  $("#movieInfo").append(`<br>`);
+  $("#movieInfo").append(` <i>${data.Plot}</i> <br>`);
+  $("#movieInfo").append(` <b>Rating:</b> ${data.Rated} <br>`);
+  $("#movieInfo").append(` <b>Genre:</b> ${data.Genre} <br>`);
+  $("#movieInfo").append(` <b>Director:</b> ${data.Director} <br>`);
+  $("#movieInfo").append(` <b>Cast:</b> ${data.Actors} <br>`);
+  
+  url = `/api/getReviews?movieId=${movieId}`;
+  response = await fetch(url);
+  data = await response.json();
+    for (var x = 0; x < data.length; x++) {
+      $("#reviews").append(`<b>${data[x].userName}</b>` + "  ");
+      data[x].Date
+      $("#reviews").append(data[x].Date);
+      $("#reviews").append(`<br>`);
+      $("#reviews").append(data[x].Review);
+      $("#reviews").append(`<br>`);
+
+          for(var z=0;z<5;z++){
+         document.getElementById("reviews").innerHTML+= '<img src="img/star.png" width=20 height=20>';
+    }
+
+    $("#reviews").append(`<br>`);
+
+      if(userName==data[x].userName){
+
+        // alert(userName);
+        // $("#reviews").append(`<a class="editLink" id=${data[x].reviewId}></a>`);
+
+        var editLink = document.createElement('a'); 
+                var link = document.createTextNode("Edit");
+                a.appendChild(link); 
+                editLink.title = "This is Link"; 
+                // editLink.href =  `/api/edit?reviewId=${data[i].reviewId}`;
+
+              
+            $("#reviews").append(editLink);
+            $("#reviews").append("        ");
+
+
+                var deleteLink = document.createElement('a'); 
+                link = document.createTextNode("Delete");
+                deleteLink.appendChild(link); 
+                deleteLink.title = "This is Link"; 
+                deleteLink.href = "https://www.geeksforgeeks.org"; 
+                deleteLink.value= data[x].reviewId;
+                alert(data[x].reviewId);
+
+            $("#reviews").append(deleteLink);
+            $("#reviews").append(`<br>`);
+      }
+
+      // for(var x=0;x<5;x++){
+      //     $("#reviews").append(`<img src="img/star.png" width=20 height=20>`);
+      // }
+      $("#reviews").append(`<br>`);
+      $("#reviews").append(`<br>`);
+    }
+}
+
+async function displayReviews() {
+
+  $("#errorMessage").html(" ");
+
+  if(userName.length<=0){
+    $("#errorMessage").html("You must sign in to write a review!");
+  }
+
+  else{
+  $("#reviews").html("");
+  // $("#errorMessage").html(" ");
+  var error = document.getElementById("errorMessage");
+  error.style.display = "none";
+  var review = document.getElementById('reviewBox').value;
+  var revId = movieId;
+  if (review.length <= 0) {
+    error.style.display = "block";
+    $("#errorMessage").html("Write a review!");
+  }
+  else if (review.length < 5) {
+    error.style.display = "block";
+    $("#errorMessage").html("Review too short!");
+  }
+  else if (review.length > 50) {
+    error.style.display = "block";
+    $("#errorMessage").html("Review too long!");
+  }
+  else {
+    // $("#errorMessage").html(movieId);
+    let url = `/api/submitReview?review=${movieId + "," + review + "," + userName}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    for (var x = 0; x < data.length; x++) {
+      $("#reviews").append(`<b>${data[x].userName}</b>` + "  ");
+      data[x].Date
+      $("#reviews").append(data[x].Date);
+      $("#reviews").append(`<br>`);
+      $("#reviews").append(data[x].Review);
+      $("#reviews").append(`<br>`);
+
+      if(userName==data[x].userName){
+        // $("#reviews").append(`<a href ="#"class="editLink" id=${data[x].reviewId}>${data[x].userName}</a>`);
+
+          var editLink = document.createElement('a'); 
+                var link = document.createTextNode("Edit");
+                a.appendChild(link); 
+                editLink.title = "This is Link"; 
+                editLink.href =  `/api/edit?reviewId=${data[i].reviewId}` ;
+
+               
+
+            $("#reviews").append(editLink);
+      }
+
+    for(var z=0;z<5;z++){
+         document.getElementById("reviews").innerHTML+= '<img src="img/star.png" width=20 height=20>';
+    }
+
+      $("#reviews").append(`<br>`);
+      $("#reviews").append(`<br>`);
+    }
+    $('#reviewBox').val('');
+  }
+
+
+  }
+}
+
+async function bgImageGeneration() {
+  if (x == 0) {
+    let bgUrl = `https://pixabay.com/api/?key=23643579-46b22be7a91c73f5afdaeee06&q=movie theater&orientation=horizontal`;
+    let bgData = await fetchData(bgUrl);
+    console.log(bgData[0].webformatURL);
+    var id = $('Body').attr('id');
+    $("#" + id).css('background-image', 'url(' + bgData + ')');
+    x++;
+  }
+}
+
+
+async function fetchData(url) {
+  let response = await fetch(url);
+  let data = await response.json();
+  var keywordsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  var index = _.shuffle(keywordsArray);
+  return data.hits[index[0]].webformatURL;
+}
+
+
+        // alert(userName);
+        // $("#reviews").append(`<a class="editLink" id=${data[x].reviewId}></a>`);
+
+            //     var editLink = document.createElement('a'); 
+            //     var link = document.createTextNode("Edit");
+            //     editLink.appendChild(link); 
+            //     editLink.title = "This is Link"; 
+            //     editLink.href = "#"; 
+
+            // $("#reviews").append(editLink);
+            // $("#reviews").append("        ");
+
+            //     var deleteLink = document.createElement('a'); 
+            //     link = document.createTextNode("Delete");
+            //     id =document.createId()
+            //     deleteLink.appendChild(link); 
+            //     deleteLink.title = "This is Link"; 
+            //     deleteLink.href = "youtube.com"; 
+            //     // deleteLink.id="deleteLink";
+            //     deleteLink.value= data[x].reviewId;
+
+            //     deleteLink.setAttribute("id", "deleteLink");
+                alert(data[x].reviewId);
+
+            // $("#reviews").append(deleteLink);
+            // $("#reviews").append(`<br>`);
+
+
+            img src="<%=pictures[i]%>"
+
+
+
+
+// app.get('/userReviews', async (req, res) => {
+//     let sql = 
+
+
+
+
+// });
+
+
+async function deleteReview() {
+  // alert("Hello");
+  
+  // let url = `/api/delete?reviewId=${reviewId}`;
+  // let response = await fetch(url);
+
+}
+
+// $(".btn").on("click", deleteReview);
+// $("#deleteLink").on("click", deleteReview);

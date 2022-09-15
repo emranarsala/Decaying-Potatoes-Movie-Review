@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <title>Home</title>
+</head>
+
+<%-include("partials/navigation.ejs")%>
+<br>
+
+
+
+<br><br><br>
+
+
+<div class="movieTop">
+
+
+<div class= "title">A-Z</div>
+<% for (let i=0; i < data.length; i++) {%>
+  <div class="movieClick" href="#" id="<%= data[i].imdbID %>"> 
+  <div id="poster2">
+  <figure>
+     <img class="topMovie" src = "<%= data[i].Poster %>"> 
+     <figcaption id = "info2"><%= data[i].Title %> </figcaption>
+
+     <figure>
+  </div>
+ 
+
+
+  </div>
+
+  <br><br>
+<%}%>
+
+<br><br>
+
+</div>
+
+<br><br>
+
+<div class="movieTop">
+
+<div class= "title">Newest Releases</div>
+<% for (let i=0; i < data2.length; i++) {%>
+  <div class="movieClick" href="#" id="<%= data2[i].imdbID %>"> 
+  
+  <div id="poster">
+  <figure>
+     
+     <img class="topMovie" src = "<%= data2[i].Poster %>"> 
+     <figcaption id = "info2"><%= data2[i].Title %> </figcaption>
+
+     <figure>
+  </div>
+ 
+  </div>
+
+  <br><br>
+<%}%>
+</div>
+
+<br><br>
+<div class="movieTop">
+
+<div class= "title"><%= data4[0].Genre %></div>
+<% for (let i=0; i < data4.length; i++) {%>
+  <div class="movieClick" href="#" id="<%= data4[i].imdbID %>"> 
+  <div id="poster">
+  <figure>
+     
+     <img class="topMovie" src = "<%= data4[i].Poster %>"> 
+     <figcaption id = "info2"><%= data4[i].Title %> </figcaption>
+
+     <figure>
+  </div>
+ 
+
+  </div>
+
+  <br><br>
+<%}%>
+</div>
+
+
+<br><br>
+<div class="movieTop">
+
+<div class= "title"><%= data5[0].Genre %></div>
+<% for (let i=0; i < data5.length; i++) {%>
+  <div class="movieClick" href="#" id="<%= data5[i].imdbID %>"> 
+  <div id="poster">
+  <figure>
+     <img class="topMovie" src = "<%= data5[i].Poster %>"> 
+     <figcaption id = "info2"><%= data5[i].Title %> </figcaption>
+
+     <figure>
+  </div>
+ 
+
+
+
+  </div>
+
+  <br><br>
+<%}%>
+
+
+
+
+
+<%-include("partials/reviewModal.ejs")%>
+<%-include("partials/signIn.ejs")%>
+
+
+
+<script src="/js/script.js">
+</script>
+
+
+</body>
+</html>

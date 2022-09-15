@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Document</title>
+</head>
+
+<body id="Body">
+  
+<header id="navHeader">
+
+<h2> <b> Decaying Potato - Movie Reviews </b></h2>
+
+<br>
+
+<nav>
+<% if(typeof user != "undefined") { %>
+<input type="hidden" name="hiddenUser" value="<%=user%>">
+<% } %>
+
+<div id="flexNav">
+<div id ="nav">
+  <a class ="navBar" href="/">Home</a>
+  <a class ="navBar" href="topMovies">Top Rated Movies</a>
+  <a class ="navBar" href="/genre">Browse By Genre</a>
+  <a class ="navBar" href="/years">Browse By Year</a>
+  <%if (typeof user == "undefined" ) { %>
+  <a href="/signIn" class="navBar">
+   Sign in or Register
+</a> 
+<br>
+<% } %>  
+<%if (typeof user != "undefined" ) { %>
+  <a class ="navBar" href="/userReviews">My Reviews</a>
+  <% } %>
+
+</div>
+
+<div class="dropdown">
+  <%if (typeof user != "undefined" ) { %>
+
+  <form method="GET" action = "/logout">
+
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= user %>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/logout">Logout?</a>
+    <a class="dropdown-item" href="/userReviews"> My Reviews</a>
+  </div>
+
+
+
+
+  <br>
+    <br>
+
+
+</form>
+<% } %>  
+  </div>
+
+  </div>
+
+<br>
+<div id="searchNav">
+
+
+    <form action="/search">
+  <input type="text" placeholder ="Search..." name="title" id="searchBox"></input>
+  <button id ="search">
+  <img src ="/img/search2.png" width=23px height=23px>
+  </button>
+  </form>
+
+</div>
+
+</nav>
+
+<br>
+
+
+</header>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"></script>
+
+
+
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <title>Home</title>
+</head>
+
+<%-include("partials/navigation.ejs")%>
+<br>
+
+<div id="homePage">
+
+<div id ="top">
+
+<div>
+ <a class="movieClick" href="#" id="<%= data[1].imdbID %>">
+         <img class="topMovie" src="<%= data[1].Poster %>">
+ </a>
+</div>
+
+<div>
+ <a class="movieClick" href="#" id="<%= data[0].imdbID %>">
+         <img class="topMovie" src="<%= data[0].Poster %>">
+ </a>
+</div>
+
+
+<div>
+ <a class="movieClick" href="#" id="<%= data[3].imdbID %>">
+         <img class="topMovie" src="<%= data[3].Poster %>">
+ </a>
+</div>
+</div>
+
+
+<br><br><br>
+
+
+<div id="movieTop">
+
+
+
+<% for (let i=0; i < data.length; i++) {%>
+  <div class="movieClick" href="#" id="<%= data[i].imdbID %>"> 
+  <div id="poster">
+     <img width="82px" height ="82px" src = "<%= data[i].Poster %>"> 
+  </div>
+
+  <div id="info">
+     <%= data[i].Title %>
+    <%= (data[i].Year) %>
+  </div>
+
+  </div>
+
+  <br><br>
+<%}%>
+
+
+</div>
+
+
+
+
+<%-include("partials/reviewModal.ejs")%>
+<%-include("partials/signIn.ejs")%>
+
+
+
+<script src="/js/script.js">
+</script>
+
+
+</body>
+</html>

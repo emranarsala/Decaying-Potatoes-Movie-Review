@@ -1,0 +1,91 @@
+
+<div id="movieModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" id="content">
+      <div class="modal-header" id="name">
+        <h5 class="modal-title" id="name2" style="font-size: large"></h5>
+      </div>
+      <div class="modal-body" id="bodyInfo">
+        
+<ul class="nav nav-tabs" role="tablist">
+                <li id ="description"class = "active" role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a>
+                </li>
+                <li id ="reviewToggle"role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                <br><br>
+
+
+        <div id="moviePhoto"></div>
+
+        <h3 id="movieRating"></h3>
+
+        <div id="movieInfo"></div>
+    
+        </div>
+                
+        <div role="tabpanel" class="tab-pane" id="profile">
+        <br>
+
+        
+
+          
+         <%if (typeof user != "undefined") { %>
+             <h3>Write A Review</h3>
+        <div id="writeReview">
+        <textarea id="reviewBox" type="text"  placeholder="Write a review..." rows="4" cols="50"> </textarea>
+        
+
+
+        <div id="RadioRating"> 
+        <input type="radio" name="rating" id="rating" value="1">
+        <label for="1">1</label>
+        <input type="radio" name="rating" id="rating" value="2" >
+        <label for="2">2</label>
+        <input type="radio" name="rating" id="rating" value="3">
+        <label for="3">3</label>
+        <input type="radio" name="rating" id="rating" value="4" >
+        <label for="4">4</label>
+        <input type="radio" name="rating" id="rating" value="5">
+        <label for="5">5</label>
+        
+
+        <br><br>
+        <button id="submitReviewButton">Submit </button>
+        
+        </div>
+    <% } else {%>
+    <h3> Login or Register to write a review!<h3>
+
+    <% } %>
+
+         
+   
+       
+
+         <h3>Reviews</h3>
+
+        <hr>
+
+        <div id="errorMessage"></div>
+        
+        <div id="reviews">
+
+     </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
